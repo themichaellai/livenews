@@ -2,19 +2,19 @@ var DOM = React.DOM;
 var bootstrap = JSON.parse(
   document.getElementById('feed').attributes['data-posts'].value);
 var store = {
-  posts: bootstrap,
+  posts: bootstrap.reverse(),
   listeners: [],
   addListener: function(cb) {
     this.listeners.push(cb);
   },
   addPost: function(post) {
-    this.posts.push(post);
+    this.posts.unshift(post);
     this.listeners.forEach(function(l) {
       l.call();
     });
   },
   getPosts: function() {
-    return this.posts.reverse();
+    return this.posts;
   }
 };
 
