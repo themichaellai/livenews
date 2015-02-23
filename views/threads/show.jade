@@ -5,6 +5,8 @@ block content
     .row
       .col-sm-10
         h1= thread.name
-        ul
-          - for post in posts
-            li= post.text
+        #feed(data-posts=JSON.stringify(posts))
+  script(src='/react/react.js')
+  script(src='/socket.io/socket.io.js')
+  script(src='/javascripts/index.js')
+  script(src='/javascripts/feed.js')

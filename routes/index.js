@@ -56,13 +56,13 @@ module.exports = function(io, mongoose) {
   });
 
   router.post('/admin/threads/:id/post', function(req, res) {
-    io.emit('message', {
-      message: req.body.messageText
-    });
     var post = new Post({
       threadId: req.params.id,
       type: "text",
       text: req.body.messageText
+    });
+    io.emit('new-post', {
+      post: post
     });
     post.save();
     return res.redirect('/admin/threads/' + req.params.id);
