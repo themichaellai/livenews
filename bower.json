@@ -1,0 +1,19 @@
+{
+  "name": "chronlive",
+  "version": "0.0.0",
+  "authors": [
+    "Michael Lai <themichaellai@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.2"
+  }
+}
