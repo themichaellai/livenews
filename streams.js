@@ -3,6 +3,7 @@ var Socket = function(http) {
   io.on('connection', function(socket) {
     socket.emit('connect-success', {msg: 'hello world'});
   });
+  return io;
 }
 
 module.exports = Socket

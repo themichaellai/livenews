@@ -1,9 +1,20 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res) {
-  res.render('index', { title: 'Express' });
-});
+module.exports = function(io) {
+  router.get('/', function(req, res) {
+    return res.render('index', { title: 'ChronLive' });
+  });
 
-module.exports = router;
+  router.get('/admin', function(req, res) {
+    return res.render('admin', {title: 'Admin Interface'});
+  });
+
+  router.post('/admin/post', function(req, res) {
+    io.emit('message', {
+      message: req.body.messageText
+    });
+    return res.redirect('/admin');
+  });
+  return router;
+};
