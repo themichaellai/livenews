@@ -13,6 +13,9 @@ var server = require('http').Server(app);
 
 var socket = require('streams')(server);
 
+var mongoose = require('mongoose');
+mongoose.connect(process.env.MONGO_URL || 'mongodb://localhost/chronlive');
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -25,7 +28,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'bower_components')));
 
-app.use('/', routes(socket));
+app.use('/', routes(socket, mongoose));
 app.use('/users', users);
 
 /// catch 404 and forward to error handler

@@ -1,0 +1,10 @@
+extends ../layout
+
+block content
+  .container
+    .row
+      .col-sm-10
+        h1= thread.name
+        ul
+          - for post in posts
+            li= post.text

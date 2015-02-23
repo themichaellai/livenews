@@ -1,12 +1,12 @@
-extends layout
+extends ../layout
 
 block content
   .container
     .row
       .col-sm-10
-        h1 Admin Interface
-        form(action="/admin/post", method="POST")
+        h1= thread.name
+        form(action="/admin/threads/" + thread.id + "/post", method="POST")
           .form-group
             label.control-label(for="messageText") Message
-            input.form-control#messageText(name="messageText")
+            textarea.form-control#messageText(name="messageText")
           button.btn.btn-default(type="submit") Submit
