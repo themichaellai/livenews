@@ -1,4 +1,5 @@
-var socket = io.connect('http://localhost:3000');
+var host = location.hostname+(location.port ? ':'+location.port: '');
+var socket = io.connect(host);
 socket.on('connect-success', function(data) {
   console.log(data.msg);
 });
