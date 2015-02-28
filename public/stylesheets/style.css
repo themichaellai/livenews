@@ -4,15 +4,20 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  text-decoration: underline;
 }
 
 p {
   line-height: 1.6em;
 }
 
-h1 {
-  padding-left: 15px;
+#feed {
+  margin-left: -15px;
+}
+
+.thread-description {
+  padding: 20px 0px;
+  border-bottom: 1px solid #eaeaea;
 }
 
 .feed-item-info {
