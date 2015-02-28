@@ -1,6 +1,7 @@
 var DOM = React.DOM;
-var bootstrap = JSON.parse(
-  document.getElementById('feed').attributes['data-posts'].value);
+var feed = document.getElementById('feed').attributes['data-posts'];
+var bootstrap = JSON.parse(feed.value);
+feed.value = '';
 var store = {
   posts: bootstrap.reverse(),
   listeners: [],
@@ -26,14 +27,34 @@ var FeedItem = React.createClass({
   displayName: 'FeedItem',
   render: function() {
     var post = this.props.post;
+    var publishedAt = new Date(post.publishedAt);
     return DOM.div({
-      className: 'feed-item'
+      className: 'feed-item-container row'
     },
       null,
-      'imageFilename' in post? DOM.img({
-        src: '/images/' + post.imageFilename
-      }) : null,
-      DOM.p(null, post.text)
+      DOM.div({
+        className: 'feed-item-info col-sm-12 col-md-2'
+      },
+        null,
+        DOM.time({
+        },
+          publishedAt.toDateString() + ' ' + publishedAt.toLocaleTimeString()
+        )
+      ),
+      DOM.div({
+        className: 'feed-item-content col-sm-12 col-md-10'
+      },
+        null,
+        'title' in post? DOM.h2({
+            className: 'feed-item-title'
+          },
+            post.title
+          ) : null,
+        'imageFilename' in post? DOM.img({
+          src: '/images/' + post.imageFilename
+        }) : null,
+        DOM.p(null, post.text)
+      )
     );
   }
 });

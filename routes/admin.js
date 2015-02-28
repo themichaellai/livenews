@@ -27,14 +27,14 @@ module.exports = function(io, mongoose) {
     var postAttrs = {
       threadId: req.params.id,
       type: "text",
-      text: req.body.messageText
+      text: req.body.text,
+      title: req.body.title
     };
     if ('image' in req.files) {
       postAttrs = _.extend(postAttrs, {
         imageFilename: req.files.image.name,
       });
     }
-    console.log(postAttrs);
     var post = new Post(postAttrs);
     io.emit('new-post', {
       post: post

@@ -6,3 +6,34 @@ body {
 a {
   color: #00B7FF;
 }
+
+p {
+  line-height: 1.6em;
+}
+
+h1 {
+  padding-left: 15px;
+}
+
+.feed-item-info {
+  color: #888;
+  font-size: 0.9em;
+}
+
+.feed-item-container {
+  margin: 40px 0px 0px;
+  padding: 0px 0px 40px 0px;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.feed-item-content h2 {
+  margin-top: 0px;
+}
+
+.feed-item-content:last-child {
+  border-bottom: none;
+}
+
+.feed-item-content img {
+  width: 100%;
+}

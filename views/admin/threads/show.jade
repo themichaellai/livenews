@@ -7,8 +7,11 @@ block content
         h1= thread.name
         form(action="/admin/threads/" + thread.id + "/post", method="POST", enctype="multipart/form-data")
           .form-group
-            label.control-label(for="messageText") Message
-            textarea.form-control#messageText(name="messageText")
+            label.control-label(for="title") Title
+            input.form-control(name="title", type="text")
+          .form-group
+            label.control-label(for="text") Text
+            textarea.form-control(name="text")
           .form-group
             label.control-label(for="image") Image
             input(type="file", name="image", accept="image/*")
