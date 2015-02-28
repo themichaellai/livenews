@@ -5,8 +5,11 @@ block content
     .row
       .col-sm-10
         h1= thread.name
-        form(action="/admin/threads/" + thread.id + "/post", method="POST")
+        form(action="/admin/threads/" + thread.id + "/post", method="POST", enctype="multipart/form-data")
           .form-group
             label.control-label(for="messageText") Message
             textarea.form-control#messageText(name="messageText")
+          .form-group
+            label.control-label(for="image") Image
+            input(type="file", name="image", accept="image/*")
           button.btn.btn-default(type="submit") Submit

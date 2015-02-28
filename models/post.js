@@ -4,5 +4,6 @@ var schema = mongoose.Schema;
 module.exports = mongoose.model('Post', {
   type: String,
   text: String,
+  imageFilename: String,
   threadId: schema.ObjectId
 });

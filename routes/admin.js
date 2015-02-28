@@ -1,6 +1,7 @@
 var router = require('express').Router();
 var Thread = require('../models/thread');
 var Post = require('../models/post');
+var _ = require('underscore');
 
 module.exports = function(io, mongoose) {
   router.get('/', function(req, res) {
@@ -9,22 +10,32 @@ module.exports = function(io, mongoose) {
         title: 'Admin Interface',
         threads: threads
       });
-    })
+    });
   });
 
   router.get('/threads/:id', function(req, res) {
     var thread = Thread.findOne({id: req.param.id}, function(err, thread) {
       if (err) return res.redirect('/admin');
-      return res.render('admin/threads/show', {thread: thread});
+      return res.render('admin/threads/show', {
+        title: thread.name,
+        thread: thread
+      });
     });
   });
 
   router.post('/threads/:id/post', function(req, res) {
-    var post = new Post({
+    var postAttrs = {
       threadId: req.params.id,
       type: "text",
       text: req.body.messageText
-    });
+    };
+    if ('image' in req.files) {
+      postAttrs = _.extend(postAttrs, {
+        imageFilename: req.files.image.name,
+      });
+    }
+    console.log(postAttrs);
+    var post = new Post(postAttrs);
     io.emit('new-post', {
       post: post
     });
@@ -44,5 +55,5 @@ module.exports = function(io, mongoose) {
   });
 
   return router;
-}
+};
 

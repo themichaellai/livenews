@@ -4,14 +4,14 @@ var Thread = require('../models/thread');
 var Post = require('../models/post');
 var async = require('async');
 
-module.exports = function(io, mongoose) {
+module.exports = function(mongoose) {
   router.get('/', function(req, res) {
     var threads = Thread.find({}, function(err, threads) {
       return res.render('index', {
         title: 'ChronLive',
         threads: threads
       });
-    })
+    });
   });
 
   router.get('/threads/:id', function(req, res) {
@@ -36,7 +36,7 @@ module.exports = function(io, mongoose) {
           posts: results[1]
         });
       }
-    )
+    );
   });
 
   return router;

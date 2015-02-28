@@ -25,11 +25,15 @@ socket.on('new-post', function(data) {
 var FeedItem = React.createClass({
   displayName: 'FeedItem',
   render: function() {
+    var post = this.props.post;
     return DOM.div({
       className: 'feed-item'
     },
       null,
-      DOM.p(null, this.props.postText)
+      'imageFilename' in post? DOM.img({
+        src: '/images/' + post.imageFilename
+      }) : null,
+      DOM.p(null, post.text)
     );
   }
 });
@@ -54,11 +58,11 @@ var Feed = React.createClass({
       null,
       this.state.posts.map(function(post) {
         return FeedItemFactory({
-          postText: post.text,
+          post: post,
           key: post._id
         });
       })
-    )
+    );
   }
 });
 
